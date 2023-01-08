@@ -4,9 +4,13 @@
 @tailwind utilities;
 
 body{
-  @apply font-['Quicksand'] text-white;
+  @apply font-['Quicksand'] text-white min-h-fit;
 }
 
 .bg-gradient-1{
-  @apply bg-gradient-to-br from-turquoisesurf to-goldcrayola h-auto;
+  @apply bg-gradient-to-br from-turquoisesurf to-goldcrayola h-screen md:h-full;
+}
+
+.bg-gradient-6{
+  @apply bg-gradient-to-br from-richblack to-celadongreen h-screen  md:h-full;
 }
