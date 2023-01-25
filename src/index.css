@@ -8,9 +8,25 @@ body{
 }
 
 .bg-gradient-1{
-  @apply bg-gradient-to-br from-turquoisesurf to-goldcrayola h-screen md:h-full;
+  @apply bg-gradient-to-br from-turquoisesurf to-goldcrayola h-screen;
+}
+
+.bg-gradient-2{
+  @apply bg-gradient-to-br from-brightnavyblue to-aquamarine h-screen;
+}
+
+.bg-gradient-3{
+  @apply bg-gradient-to-br from-ultramarineblue to-amaranthpink h-screen;
+}
+
+.bg-gradient-4{
+  @apply bg-gradient-to-br from-fuchsiarose to-mellowappricot h-screen;
+}
+
+.bg-gradient-5{
+  @apply bg-gradient-to-br from-spacecadet to-lavenderpurple h-screen;
 }
 
 .bg-gradient-6{
-  @apply bg-gradient-to-br from-richblack to-celadongreen h-screen  md:h-full;
+  @apply bg-gradient-to-br from-richblack to-celadongreen h-screen;
 }
