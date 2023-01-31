@@ -15,7 +15,7 @@ export default function App() {
   }, [location]);
 
   useEffect(() => {
-    if (location.loaded) {
+    if (location?.loaded) {
       fetch(
         `https://api.weatherapi.com/v1/forecast.json?key=${process.env.REACT_APP_WEATHER_API_KEY}&q=${queryValue}&days=3&aqi=no&alerts=no`
       )
