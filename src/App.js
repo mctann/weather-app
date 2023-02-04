@@ -8,14 +8,17 @@ export default function App() {
   const [weatherClass, setWeatherClass] = useState(1);
   const [isLoading, setIsLoading] = useState(true);
   const [queryValue, setQueryValue] = useState("Jakarta");
-  const location = useGeoLocation();
+  const location = useGeoLocation({
+    loaded: false,
+    coordinates: { lat: "", lng: "" },
+  });
 
   useEffect(() => {
     setQueryValue(location.coordinates.lat + "," + location.coordinates.lng);
   }, [location]);
 
   useEffect(() => {
-    if (location?.loaded) {
+    if (location.loaded) {
       fetch(
         `https://api.weatherapi.com/v1/forecast.json?key=${process.env.REACT_APP_WEATHER_API_KEY}&q=${queryValue}&days=3&aqi=no&alerts=no`
       )
@@ -47,7 +50,9 @@ export default function App() {
     <div>
       {isLoading ? (
         <div class="flex items-center justify-center w-screen h-screen bg-blue-300 px-8">
-          <p class="text-5xl text-white">Please enable your allocation access</p>
+          <p class="text-5xl text-white">
+            Please enable your allocation access
+          </p>
         </div>
       ) : (
         <div className={`bg-gradient-${weatherClass}`}>
