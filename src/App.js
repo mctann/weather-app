@@ -7,7 +7,7 @@ export default function App() {
   const [weatherData, setWeatherData] = useState([]);
   const [weatherClass, setWeatherClass] = useState(1);
   const [isLoading, setIsLoading] = useState(true);
-  const [queryValue, setQueryValue] = useState("Jakarta");
+  const [queryValue, setQueryValue] = useState("");
   const location = useGeoLocation();
 
   useEffect(() => {
@@ -15,37 +15,40 @@ export default function App() {
   }, [location]);
 
   useEffect(() => {
+    if (queryValue !== "," && queryValue !== "") {
       fetch(
         `https://api.weatherapi.com/v1/forecast.json?key=${process.env.REACT_APP_WEATHER_API_KEY}&q=${queryValue}&days=3&aqi=no&alerts=no`
       )
         .then((res) => res.json())
         .then((data) => {
-          setWeatherData(data);
-          const hour = new Date(data.location?.localtime).getHours();
+            setWeatherData(data);
+            const hour = new Date(data.location?.localtime).getHours();
 
-          if (hour >= 6 && hour < 11) {
-            setWeatherClass(1);
-          } else if (hour >= 11 && hour < 14) {
-            setWeatherClass(2);
-          } else if (hour >= 14 && hour < 16) {
-            setWeatherClass(3);
-          } else if (hour >= 16 && hour < 18) {
-            setWeatherClass(4);
-          } else if (hour >= 18 && hour < 20) {
-            setWeatherClass(5);
-          } else {
-            setWeatherClass(6);
-          }
+            if (hour >= 6 && hour < 11) {
+              setWeatherClass(1);
+            } else if (hour >= 11 && hour < 14) {
+              setWeatherClass(2);
+            } else if (hour >= 14 && hour < 16) {
+              setWeatherClass(3);
+            } else if (hour >= 16 && hour < 18) {
+              setWeatherClass(4);
+            } else if (hour >= 18 && hour < 20) {
+              setWeatherClass(5);
+            } else {
+              setWeatherClass(6);
+            }
 
-          setIsLoading(false);
+            setIsLoading(false);
+      
         });
+    }
   }, [queryValue]);
 
   return (
     <div>
       {isLoading ? (
-        <div class="flex items-center justify-center w-screen h-screen bg-blue-300 px-8">
-          <p class="text-5xl text-white">
+        <div className="flex items-center justify-center w-screen h-screen bg-blue-300 px-8">
+          <p className="text-5xl text-white">
             Please enable your allocation access
           </p>
         </div>
