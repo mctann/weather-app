@@ -8,17 +8,13 @@ export default function App() {
   const [weatherClass, setWeatherClass] = useState(1);
   const [isLoading, setIsLoading] = useState(true);
   const [queryValue, setQueryValue] = useState("Jakarta");
-  const location = useGeoLocation({
-    loaded: false,
-    coordinates: { lat: "", lng: "" },
-  });
+  const location = useGeoLocation();
 
   useEffect(() => {
     setQueryValue(location.coordinates.lat + "," + location.coordinates.lng);
   }, [location]);
 
   useEffect(() => {
-    if (location.loaded) {
       fetch(
         `https://api.weatherapi.com/v1/forecast.json?key=${process.env.REACT_APP_WEATHER_API_KEY}&q=${queryValue}&days=3&aqi=no&alerts=no`
       )
@@ -43,7 +39,6 @@ export default function App() {
 
           setIsLoading(false);
         });
-    }
   }, [queryValue]);
 
   return (
